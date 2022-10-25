@@ -22,3 +22,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Exclude everything in db dir
+# (the database itself should NOT be in the repo)
+/db/*
