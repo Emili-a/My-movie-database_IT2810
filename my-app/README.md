@@ -1,3 +1,13 @@
+#### Importer filmdata
+
+NB: Wget-kommandoen er forhåndsinstallert på de fleste Unix-systemer (dvs. Linux, MacOS o.l), men krever ekstern installasjon på Windows (ikke testet)
+
+```
+wget https://openmdb.netlify.app/api/getTrendingMovies -O db/db.json
+```
+
+
+
 #### Kjør DB-server
 
 ```
