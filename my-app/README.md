@@ -1,3 +1,18 @@
+#### Kjør DB-server
+
+```
+npm run dbstart
+```
+
+For øyeblikket burde dette returnere følgende:
+
+```
+> my-app@0.1.0 dbstart
+> node db.js
+
+{ data: [Object: null prototype] { hei: 'Hallo verden!' } }
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
