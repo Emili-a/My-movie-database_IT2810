@@ -14,11 +14,15 @@ wget https://openmdb.netlify.app/api/getTrendingMovies -O db/db.json
 npm run graphql
 ```
 
-#### Kjør DB-server:
+#### Kjør DB:
 
 ```
 npm run db
 ```
+
+#### NB angående db.json
+
+Av fremoverkompatibilitetsårsaker (og siden `wget`-kommandoen ovenfor returnerer kun et JSON-array, mens DB-serveren krever et objekt), har denne blitt navngitt `films` og pakket inn i et ytre JSON-objekt. Et skript for å løse dette programmatisk jobbes med.
 
 
 
