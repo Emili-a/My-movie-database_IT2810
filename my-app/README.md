@@ -6,6 +6,8 @@ NB: Wget-kommandoen er forhåndsinstallert på de fleste Unix-systemer (dvs. Lin
 wget https://openmdb.netlify.app/api/getTrendingMovies -O db/db.json
 ```
 
+Av fremoverkompatibilitetsårsaker (og siden `wget`-kommandoen ovenfor returnerer kun et JSON-array, mens DB-serveren krever et objekt), må denne pakkes inn i et ytre JSON-objekt for at databasen skal kjøre riktig. Et skript for å løse dette programmatisk jobbes med.
+
 
 
 #### Kjør GraphQL
@@ -14,17 +16,15 @@ wget https://openmdb.netlify.app/api/getTrendingMovies -O db/db.json
 npm run graphql
 ```
 
+
+
 #### Kjør DB:
+
+Merk: Siden port 3000 er tatt av React-appen, har porten til JSON-serveren blitt endret til 3001 (se `package.json` for nærmere detaljer)
 
 ```
 npm run db
 ```
-
-#### NB angående db.json
-
-Av fremoverkompatibilitetsårsaker (og siden `wget`-kommandoen ovenfor returnerer kun et JSON-array, mens DB-serveren krever et objekt), har denne blitt navngitt `films` og pakket inn i et ytre JSON-objekt. Et skript for å løse dette programmatisk jobbes med.
-
-
 
 # Getting Started with Create React App
 
