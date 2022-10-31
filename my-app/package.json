@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "startdb": "json-server db/db.json --port 3001",
+    "db": "json-server db/db.json --port 3001",
     "graphql": "node graphql.tsx",
     "build": "react-scripts build",
     "test": "react-scripts test",

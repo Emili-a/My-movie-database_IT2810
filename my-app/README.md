@@ -8,20 +8,19 @@ wget https://openmdb.netlify.app/api/getTrendingMovies -O db/db.json
 
 
 
-#### Kjør DB-server
+#### Kjør GraphQL
 
 ```
-npm run dbstart
+npm run graphql
 ```
 
-For øyeblikket burde dette returnere følgende:
+#### Kjør DB-server:
 
 ```
-> my-app@0.1.0 dbstart
-> node db.js
-
-{ data: [Object: null prototype] { hei: 'Hallo verden!' } }
+npm run db
 ```
+
+
 
 # Getting Started with Create React App
 
