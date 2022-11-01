@@ -1,12 +1,3 @@
-import React from 'react'
-
-
-
-
-
-
-
-/*
 var { graphql, buildSchema } = require('graphql');
 
 // Sett opp et skjema via GraphQL-spoerrespraak
@@ -26,22 +17,8 @@ var rootValue = {
 // Brukseksempel: Kjør query (hei), få tilbake "Hallo verden!" og spytt ut til console.log
 graphql({
   schema,
-  source: "{  }",
+  source: "{ hei }",
   rootValue
 }).then((response) => {
   console.log(response);
 });
-
-
-
-export const api = () => {
-  return (
-    <div>api</div>
-  )
-}
-
-export const getMovies = async () => {
-    const response = await api.get('/movies')
-    return response.data
-} 
-*/

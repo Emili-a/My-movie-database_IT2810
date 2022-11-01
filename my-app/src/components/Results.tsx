@@ -15,6 +15,11 @@ export interface IData {
 const limitEntities = 25;
 
 // lage en async funksjon for execute search? eller ikke
+// vv(nedenfor) hvordan vi hadde gjort det tidligere i api-filen(som nå er slettet)  
+// export const getMovies = async () => {
+//     const response = await api.get('/movies')
+//     return response.data
+// } 
 
 export const Results = (props: { searchText: String }) => {
     const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen

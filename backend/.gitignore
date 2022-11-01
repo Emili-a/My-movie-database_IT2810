@@ -1,8 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# Prevent package-lock from causing merge conflicts
 /package-lock.json
+
+# dependencies
+node_modules/
 /.pnp
 .pnp.js
 
@@ -22,6 +24,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# The database itself should NOT be in the repo
-/db/db.json
