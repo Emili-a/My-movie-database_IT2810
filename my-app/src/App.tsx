@@ -1,9 +1,11 @@
 import React from 'react';
-import FrontPage from "./pages/FrontPage";
+import MoviesPage from "./pages/MoviesPage";
 
 function App() {
   return (
-      <FrontPage />  
+    <div>
+      <MoviesPage /> 
+    </div> 
   );
 }
 

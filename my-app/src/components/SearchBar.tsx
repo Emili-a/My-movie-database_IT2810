@@ -1,27 +1,30 @@
 import React from 'react'
 
-const SearchBar = ({ movies, setSearchResults}:any) => {
-  const handleSubmit = (e: any) => e.preventDefault() //no relaod on submitt?
-  
-  const handleSearchChange = (e:any) => {
-    if (!e.target.value) return setSearchResults(movies)  //if input is empty
+/**
+ * @description Component that handles input of searchText and passes the searchText to MoviesPage
+ */
 
-    const resultArray = movies.filter(movie => movie.tilte.includes(e.target.value)
-    || movie.body.includes(e.target.value))
-    // hva med fliter på spesifike parametere som director eller år?
-    setSearchResults(resultArray)
+export interface ISearch {
+  setSearchResults: React.Dispatch<React.SetStateAction<String>>;
+}
+
+const SearchBar = ({ setSearchResults }: ISearch) => {
+  const handleSubmit = (e: any) => e.preventDefault() //no relaod on submitt?
+
+  const handleSearchChange = (e: any) => {
+    if (!e.target.value) return setSearchResults("")  //if input is empty all movies should be displayed
+    setSearchResults(e.target.value)
   }
   return (
     <header>
       <form className="search" onSubmit={handleSubmit}>
-        <input 
+        <input
           className="searchInput"
           type='text'
           id='search'
-          onChange={handleSearchChange} 
+          onChange={handleSearchChange}
         />
         <button className="searchButton">
-
         </button>
       </form>
     </header>

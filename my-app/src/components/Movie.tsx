@@ -1,12 +1,31 @@
 import React from "react";
+import { IMovie} from '../model/IMovie';
 
 
-const Movie = ({movie}:any) => { 
+/*
+interface IMovie{
+    title: string,
+    duration: string,
+    plot: string,
+    genre: string[],
+    image_url: string, //(link)
+    movieId: number,
+    review: IReview[],
+    agvRating: number
+
+}
+*/
+
+export interface IThumbnail {
+    movie: IMovie;
+  }
+
+const Movie = ({movie}:IThumbnail) => { 
     return (
         <article>
             <h2>{movie.title}</h2>
-            <p>{movie.body}</p>
-            <p> Post ID: {movie.id}</p>
+            <p>{movie.plot}</p>
+            <p> Movie ID: {movie.id}</p>
         </article>
     )
 }
