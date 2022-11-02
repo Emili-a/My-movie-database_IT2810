@@ -1,0 +1,33 @@
+enum Sort {
+  asc
+  desc
+}
+type IMDB {
+  rating: Float
+  votes: Int
+  id: Int
+}
+
+type Movie {
+  _id: String
+  title: String
+  plot: String
+  fullplot: String
+  rated: String
+  year: Int
+  genres: [String]
+  languages: [String]
+  countries: [String]
+  runtime: Int
+  directors: [String]
+  writers: [String]
+  imdb: IMDB
+  cast: [String]
+  poster: String
+  released: String
+}
+
+type Query {
+  movies(take: Int, skip: Int, orderBy: Sort, genre: String): [Movie]
+  search(search: String): [Movie]
+}
