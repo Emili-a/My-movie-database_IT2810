@@ -36,7 +36,7 @@ var root = {
     const dbConnect = dbo.getDb();
     const query = { $text: { $search: args.search } };
     
-    // Return only the `title` of each matched document
+    // Return only the `title` of each matched document.
     const projection = {
         _id: 0,
         title: 1,
