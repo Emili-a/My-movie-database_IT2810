@@ -1,27 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const FILTER_QUERY = gql`
-  query filterMovies ($searchText: String!) {
+  query FilterMovies ($searchText: String!, $skip: Int!, $limit: Int!) {
     movies(
-        $limitEntities: Int
-        filter: {
-            OR: [{
-                title_contains: $searchText
-            }, {
-                plot_contains: $searchText
-            },
-            {
-                genre_contains: $searchText
-            }]
-        }) {
-            id
+        limit: $limit,
+        skip: $skip,
+        search: $searchText
+        ) {
+            _id
             title
-            duration
             plot
-            genre
-            image_url
-            review
-            agvRating
+            runtime
+            genres
+            poster
         }
   }
 `;
@@ -29,7 +20,7 @@ export const FILTER_QUERY = gql`
 //String!: the exclamation mark means non-nullable, meaning GraphQL service promises to always give you a value when you query this field
 export const GET_MOVIE = gql`
   query getMovie ($movieId: String!) { 
-    movie (input: { id: $movieId }) {
+    movie (input: { id: movieId }) {
       id
       title
       duration

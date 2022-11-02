@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/FrontPage.css';
+import '../styles/MoviesPage.css';
 import { useState } from 'react'
 import { Results } from "../components/Results";
 import SearchBar from "../components/SearchBar";

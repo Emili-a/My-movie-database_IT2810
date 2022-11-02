@@ -29,7 +29,8 @@ export const Results = (props: { searchText: String }) => {
         variables: {
             //searchbar results
             searchText: props.searchText,
-            limitEntities: limitEntities,
+            skip: 0,
+            limit: limitEntities,
         },
         notifyOnNetworkStatusChange: true, //what does this do
     });
@@ -44,7 +45,7 @@ export const Results = (props: { searchText: String }) => {
                 return (
                     <div key={movie.id}>
                         <h3>{movie.title}</h3>
-                        <img width="400" height="250" alt="location-reference" src={`${movie.image_url}`} />
+                        <img width="400" height="250" alt="location-reference" src={`${movie.poster}`} />
                         <br />
                     </div>
                 )

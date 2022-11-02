@@ -26,7 +26,7 @@ export const MovieInfo = (props: { selectedMovieID: string }) => {
     return (
       <div key={data?.movie.id}>
         <h3>{data?.movie.title}</h3>
-        <img width="400" height="250" alt="location-reference" src={`${data?.movie.image_url}`} />
+        <img width="400" height="250" alt="location-reference" src={`${data?.movie.poster}`} />
         <br />
         <b>About this movie:</b>
         <p>{data?.movie.plot}</p>
@@ -37,6 +37,3 @@ export const MovieInfo = (props: { selectedMovieID: string }) => {
     )
 }
 //id, title, duration, plot, genre, image_url, review, agvRating
-
-
-
