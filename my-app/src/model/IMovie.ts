@@ -10,5 +10,5 @@ export interface IMovie{
     poster?: string, //(link)
     review?: IReview[],
     agvRating?: number
-
+    favorite?: boolean
 }

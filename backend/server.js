@@ -40,22 +40,17 @@ var root = {
   },
   movie: (args) => {
     const dbConnect = dbo.getDb();
-    const query = { "_id": args.id };
-    
-    // Return only the `title` of each matched document.
-    //const projection = {
-    //    _id: 0,
-    //    title: 1,
-    //    plot: 2,
-    //    // ADD MORE FIELDS HERE
-    //};
+    const objectId = new ObjectId(args._id);
+    const query = { "_id": objectId };
+    console.log(args)
 
     var ret = dbConnect
       .collection("movies")
-      .find(query)
-      //.project(projection)
-      .toArray();
-    return ret;
+      .find(query).toArray();
+    return ret.then((value) => {
+      console.log(value);
+      return value[0];
+    });
   },
   setFavorite: (args) => {
     const dbConnect = dbo.getDb();

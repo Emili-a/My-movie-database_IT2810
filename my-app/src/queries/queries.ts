@@ -21,14 +21,22 @@ export const FILTER_QUERY = gql`
 export const GET_MOVIE = gql`
   query getMovie ($movieId: String!) { 
     movie (input: { id: movieId }) {
-      id
+      _id
       title
-      duration
       plot
-      genre
-      image_url
-      review
-      agvRating
+      fullplot
+      runtime
+      genres
+      poster
+    }
+  }
+`;
+
+export const SET_FAVORITE = gql`
+  mutation setFavorite ($movieId: String!, $favorite: Boolean!) {
+    setFavorite (input: { _id: $movieId, favorite: $favorite }) {
+      _id
+      favorite
     }
   }
 `;
