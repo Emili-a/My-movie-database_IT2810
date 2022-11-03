@@ -28,6 +28,6 @@ type Movie {
 }
 
 type Query {
-  movies(take: Int, skip: Int, orderBy: Sort, genre: String): [Movie]
-  search(search: String): [Movie]
+  movies(limit: Int, skip: Int, orderBy: Sort, genre: String, search: String): [Movie]
+  movie(_id: String): Movie
 }

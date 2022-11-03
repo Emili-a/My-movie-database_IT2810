@@ -4,7 +4,7 @@ import { FILTER_QUERY } from "../queries/queries";
 import { IMovie } from "../model/IMovie";
 
 /**
- * @description Component that 
+ * @description Component that
  */
 
 
@@ -22,14 +22,15 @@ const limitEntities = 25;
 // } 
 
 export const Results = (props: { searchText: String }) => {
-    const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen
+    const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
 
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
             //searchbar results
             searchText: props.searchText,
-            limitEntities: limitEntities,
+            skip: 1,
+            limit: limitEntities,
         },
         notifyOnNetworkStatusChange: true, //what does this do
     });
@@ -44,7 +45,7 @@ export const Results = (props: { searchText: String }) => {
                 return (
                     <div key={movie.id}>
                         <h3>{movie.title}</h3>
-                        <img width="400" height="250" alt="location-reference" src={`${movie.image_url}`} />
+                        <img width="400" height="250" alt="location-reference" src={`${movie.poster}`} />
                         <br />
                     </div>
                 )

@@ -3,6 +3,9 @@ var { graphqlHTTP } = require("express-graphql");
 var { buildSchema } = require("graphql");
 var { readFileSync } = require("fs");
 
+// Cors is required in order to enable cross origin calls
+var cors = require('cors')
+
 // get MongoDB driver connection
 const dbo = require("./conn");
 
@@ -15,7 +18,9 @@ var root = {
     console.log(args)
 
     const dbConnect = dbo.getDb();
-    if ("genre" in args) {
+    if ("search" in args) {
+      query = { $text: { $search: args.search } };
+    } else if ("genre" in args) {
         query = { "genres": args.genre }
     } else {
         query = {}
@@ -28,25 +33,26 @@ var root = {
       .find(query)
       .sort(sorter)
       .skip(args.skip)
-      .limit(args.take)
+      .limit(args.limit)
       .toArray();
     return ret;
   },
-  search: (args) => {
+  movie: (args) => {
     const dbConnect = dbo.getDb();
-    const query = { $text: { $search: args.search } };
+    const query = { "_id": args.id };
     
     // Return only the `title` of each matched document.
-    const projection = {
-        _id: 0,
-        title: 1,
-        plot: 2,
-    };
+    //const projection = {
+    //    _id: 0,
+    //    title: 1,
+    //    plot: 2,
+    //    // ADD MORE FIELDS HERE
+    //};
 
     var ret = dbConnect
       .collection("movies")
       .find(query)
-      .project(projection)
+      //.project(projection)
       .toArray();
     return ret;
   },
@@ -54,6 +60,8 @@ var root = {
 
 const PORT = process.env.PORT || 4000;
 var app = express();
+app.use(cors())
+
 app.use(
   "/graphql",
   graphqlHTTP({

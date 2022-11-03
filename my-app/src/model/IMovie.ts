@@ -7,7 +7,7 @@ export interface IMovie{
     duration?: string,
     plot?: string,
     genre?: string[],
-    image_url?: string, //(link)
+    poster?: string, //(link)
     review?: IReview[],
     agvRating?: number
 

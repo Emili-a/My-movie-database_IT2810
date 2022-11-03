@@ -10,7 +10,7 @@ Dependencies:
 - [ ] [MongoDB Database Tools Download guide ](https://www.mongodb.com/docs/database-tools/installation/installation-windows/)
 - Curl
 
-## Write in Terminal for Database
+## Write in Terminal for Database (you need curl for this)
 
 curl https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.archive
 mongorestore --archive=sampledata.archive
