@@ -19,8 +19,10 @@ export const FILTER_QUERY = gql`
 
 //String!: the exclamation mark means non-nullable, meaning GraphQL service promises to always give you a value when you query this field
 export const GET_MOVIE = gql`
-  query getMovie ($movieId: String!) { 
-    movie (input: { id: movieId }) {
+  query GetMovie ($movieId: String!) { 
+    movie (
+      id: $movieId
+    ) {
       _id
       title
       plot
@@ -33,8 +35,11 @@ export const GET_MOVIE = gql`
 `;
 
 export const SET_FAVORITE = gql`
-  mutation setFavorite ($movieId: String!, $favorite: Boolean!) {
-    setFavorite (input: { _id: $movieId, favorite: $favorite }) {
+  mutation SetFavorite ($movieId: String!, $favorite: Boolean!) {
+    setFavorite (
+      _id: $movieId,
+      favorite: $favorite
+    ) {
       _id
       favorite
     }

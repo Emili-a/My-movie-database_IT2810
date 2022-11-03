@@ -2,7 +2,7 @@ import { IReview } from './IReview';
 
 
 export interface IMovie{
-    id: string,
+    _id: string,
     title: string,
     duration?: string,
     plot?: string,

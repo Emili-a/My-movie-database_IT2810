@@ -56,7 +56,7 @@ var root = {
     const dbConnect = dbo.getDb();
     const objectId = new ObjectId(args._id);
     const query = { "_id": objectId };
-    const update = { $set: { "favorite": args.value } };
+    const update = { $set: { "favorite": args.favorite } };
     const options = { returnDocument: "after" };
 
     var ret = dbConnect

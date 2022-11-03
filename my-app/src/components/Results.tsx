@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { FILTER_QUERY } from "../queries/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { FILTER_QUERY, SET_FAVORITE } from "../queries/queries";
 import { IMovie } from "../model/IMovie";
 
 /**
@@ -27,7 +27,6 @@ export const Results = (props: { searchText: String }) => {
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
-            //searchbar results
             searchText: props.searchText,
             skip: 1,
             limit: limitEntities,
@@ -35,6 +34,7 @@ export const Results = (props: { searchText: String }) => {
         notifyOnNetworkStatusChange: true, //what does this do
     });
 
+    const [setFavorite, { data:data2, loading:loading2, error:error2 }] = useMutation(SET_FAVORITE);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
@@ -43,10 +43,13 @@ export const Results = (props: { searchText: String }) => {
         <div>
             {data?.movies.map((movie) => {
                 return (
-                    <div key={movie.id}>
+                    <div key={movie._id}>
                         <h3>{movie.title}</h3>
                         <img width="400" height="250" alt="location-reference" src={`${movie.poster}`} />
                         <br />
+                        <button onClick={() => setFavorite({ variables: {movieId: movie._id, favorite: !movie.favorite} })}>
+                            {movie.favorite ? "Remove from favorites" : "Add to favorites"}
+                        </button>
                     </div>
                 )
             })}
