@@ -1,3 +1,4 @@
+const {ObjectId} = require('mongodb');
 var express = require("express");
 var { graphqlHTTP } = require("express-graphql");
 var { buildSchema } = require("graphql");
@@ -56,7 +57,23 @@ var root = {
       .toArray();
     return ret;
   },
+  setFavorite: (args) => {
+    const dbConnect = dbo.getDb();
+    const objectId = new ObjectId(args._id);
+    const query = { "_id": objectId };
+    const update = { $set: { "favorite": args.value } };
+    const options = { returnDocument: "after" };
+
+    var ret = dbConnect
+      .collection("movies")
+      .findOneAndUpdate(query, update, options);
+    ret.then((value) => {
+      //console.log(value);
+    });
+    return ret.then((result) => {return result.value});
+  },
 };
+
 
 const PORT = process.env.PORT || 4000;
 var app = express();
