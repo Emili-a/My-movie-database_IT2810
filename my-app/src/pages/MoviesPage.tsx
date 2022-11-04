@@ -14,10 +14,10 @@ const MoviesPage = () => {
     const results = searchResults.map(movie => <Movie key={movie.id} movie={movie}/>)
     const content = results?.length ? results : <article><p> </>
     */
-    function handleSubmit(e:any) {
+    function handleSubmit(e: any) {
         e.preventDefault();
         console.log('You clicked submit.');
-      }
+    }
 
     return (
         <div className="wrapper">
@@ -39,36 +39,7 @@ const MoviesPage = () => {
                     >My favorites</button>
                 </menu>
                 <div className='Results'>
-                    <div>
-                        <h3>Title</h3>
-                        <img className="movieCover" alt="movie" src={"https://cdn.moviefone.com/admin-uploads/posters/thor-movie-poster_1653358064.jpg?d=360x540&q=80"} />
-                        <br />
-                    </div>
-                    <div>
-                        <h3>Title</h3>
-                        <img className="movieCover" alt="movie" src={"https://cdn.moviefone.com/admin-uploads/posters/thor-movie-poster_1653358064.jpg?d=360x540&q=80"} />
-                        <br />
-                    </div>
-                    <div>
-                        <h3>Title</h3>
-                        <img className="movieCover" alt="movie" src={"https://cdn.moviefone.com/admin-uploads/posters/thor-movie-poster_1653358064.jpg?d=360x540&q=80"} />
-                        <br />
-                    </div>
-                    <div>
-                        <h3>Title</h3>
-                        <img className="movieCover" alt="movie" src={"https://cdn.moviefone.com/admin-uploads/posters/thor-movie-poster_1653358064.jpg?d=360x540&q=80"} />
-                        <br />
-                    </div>
-                    <div>
-                        <h3>Title</h3>
-                        <img className="movieCover" alt="movie" src={"https://cdn.moviefone.com/admin-uploads/posters/thor-movie-poster_1653358064.jpg?d=360x540&q=80"} />
-                        <br />
-                    </div>
-                    <div>
-                        <h3>Title</h3>
-                        <img className="movieCover" alt="movie" src={"https://cdn.moviefone.com/admin-uploads/posters/thor-movie-poster_1653358064.jpg?d=360x540&q=80"} />
-                        <br />
-                    </div>
+                    <Results searchText={searchResults} />
                 </div>
             </main>
         </div>
