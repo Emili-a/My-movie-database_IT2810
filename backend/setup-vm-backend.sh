@@ -18,7 +18,7 @@ dpkg -i mongodb.deb
 
 # Update configuration
 rm -rf /etc/mongod.conf
-cp conf/default.conf /etc/mongod.conf
+cp ../conf/default.conf /etc/mongod.conf
 
 # (Re)start daemon
 service mongod stop
