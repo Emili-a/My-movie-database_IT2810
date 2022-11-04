@@ -55,7 +55,7 @@ export const Results = (props: { searchText: String }) => {
                     <div key={movie._id}>
                         <h3>{movie.title}</h3>
                         <div>
-                            <button type="button" onClick={() => {
+                            <button className="posterButton" type="button" onClick={() => {
                                 console.log(`${movie._id}`);
                                 setSelectedMovieId(`${movie._id}`);
                                 setOpenMovie(true);
@@ -63,8 +63,7 @@ export const Results = (props: { searchText: String }) => {
                                 <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
                             </button>
                         </div>
-                        <br />
-                        <button onClick={() => {
+                        <button className="favoriteButton" onClick={() => {
                             setFavorite({ variables: { movieId: movie._id, favorite: !movie.favorite } });
                         }}>
                             {movie.favorite ? "Remove from favorites" : "Add to favorites"}
