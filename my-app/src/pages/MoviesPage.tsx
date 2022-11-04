@@ -7,8 +7,8 @@ import SearchBar from "../components/SearchBar";
 //<Results searchText={searchResults}/>
 
 const MoviesPage = () => {
-    const [searchResults, setSearchResults] = useState<String>("B");
-    const [favorits, setFavorits] = useState<boolean>(false);
+    const [searchResults, setSearchResults] = useState<String>("");
+    const [favorite, setfavorite] = useState<boolean>(false);
 
     /*useEffect
     const results = searchResults.map(movie => <Movie key={movie.id} movie={movie}/>)
@@ -29,17 +29,17 @@ const MoviesPage = () => {
                 <menu>
                     <button className="MenuButton"
                         onClick={() => {
-                            setFavorits(false);
+                            setfavorite(false);
                         }}
                     >All movies</button>
                     <button className="MenuButton"
                         onClick={() => {
-                            setFavorits(true);
+                            setfavorite(true);
                         }}
                     >My favorites</button>
                 </menu>
                 <div>
-                    <Results searchText={searchResults} />
+                    <Results searchText={searchResults} favorite={favorite} />
                 </div>
             </main>
         </div>
