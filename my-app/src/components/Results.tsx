@@ -56,7 +56,13 @@ export const Results = (props: { searchText: String }) => {
                 return (
                     <div key={movie._id}>
                         <h3>{movie.title}</h3>
-                        <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
+                        <div>
+                            <button type="button" onClick={() => {
+                                console.log("movie-id")
+                            }}>
+                                <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
+                            </button>
+                        </div>
                         <br />
                         <button onClick={() => {
                             setFavorite({ variables: { movieId: movie._id, favorite: !movie.favorite } });
