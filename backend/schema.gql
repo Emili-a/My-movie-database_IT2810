@@ -29,7 +29,8 @@ type Movie {
 }
 
 type Query {
-  movies(limit: Int, skip: Int, orderBy: Sort, genre: String, search: String, favorite: Boolean): [Movie]
+  movies(limit: Int, skip: Int, orderBy: Sort, genre: String, search: String): [Movie]
+  fav_movies(limit: Int, skip: Int, orderBy: Sort, genre: String, search: String): [Movie]
   movie(_id: String): Movie
 }
 

@@ -51,7 +51,7 @@ const MovieInfo = (props: { selectedMovieID: string }) => {
       </p>
       <p>{data?.movie.favorite}</p>
       <br />
-    </div>
+    </div> 
   )
 }
 
