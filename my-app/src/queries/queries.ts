@@ -13,6 +13,7 @@ export const FILTER_QUERY = gql`
             runtime
             genres
             poster
+            favorite
         }
   }
 `;

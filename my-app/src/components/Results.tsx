@@ -23,6 +23,7 @@ const limitEntities = 25;
 
 export const Results = (props: { searchText: String }) => {
     const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
+    const [fav, setfav] = useState<Boolean>(false);  
 
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
@@ -38,6 +39,8 @@ export const Results = (props: { searchText: String }) => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
+
+    
     return (
         <div>
             {data?.movies.map((movie) => {
@@ -48,9 +51,8 @@ export const Results = (props: { searchText: String }) => {
                         <img width="400" height="250" alt="location-reference" src={`${movie.poster}`} />
                         <br />
                         <button onClick={() => {
-                            console.log(movie.title);
-                            var favorite = movie.favorite;
-                            setFavorite({ variables: {movieId: movie._id, favorite: !movie.favorite} })}}>
+                            setFavorite({ variables: {movieId: movie._id, favorite: !movie.favorite} });
+                            }}>
                             {movie.favorite ? "Remove from favorites" : "Add to favorites"}
                         </button>
                     </div>
