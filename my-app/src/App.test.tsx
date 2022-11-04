@@ -11,8 +11,12 @@ import SearchBar from "./components/SearchBar";
 
 test("Site rendering", () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<MoviesPage />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
+test('Search bar loading', () => {
+  render(<MoviesPage />);
+  expect(MoviesPage.find(SearchBar)).toBeInTheDocument();
+});
 
