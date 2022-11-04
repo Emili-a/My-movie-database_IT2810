@@ -11,7 +11,7 @@ Dependencies:
 - Curl
 
 ## Write in Terminal for Database (you need curl for this)
-
+mongod --config /usr/local/etc/mongod.conf
 curl https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.archive
 mongorestore --archive=sampledata.archive
 
