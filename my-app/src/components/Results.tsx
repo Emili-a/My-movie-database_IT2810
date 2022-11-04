@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import Modal from '@mui/material/Modal';
 import MovieInfo from "./MovieInfo";
-
 import { FILTER_QUERY, SET_FAVORITE } from "../queries/queries";
 import { IMovie } from "../model/IMovie";
 
@@ -26,8 +25,8 @@ const limitEntities = 25;
 
 export const Results = (props: { searchText: String }) => {
     const [movies, setMovies] = useState<IMovie[]>([]); // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
-    const [selectedMovie, setSelectedMovie] = useState<IMovie | null>(null);
-    const [selectedBeverageId, setSelectedBeverageId] = useState("");
+    const [fav, setfav] = useState<Boolean>(false);
+    const [selectedMovieId, setSelectedMovieId] = useState("");
 
 
     const [openMovie, setOpenMovie] = useState<boolean>(false);
@@ -55,9 +54,16 @@ export const Results = (props: { searchText: String }) => {
                 return (
                     <div key={movie._id}>
                         <h3>{movie.title}</h3>
-                        <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
-                        <br />
-                        <button onClick={() => {
+                        <div>
+                            <button className="posterButton" type="button" onClick={() => {
+                                console.log(`${movie._id}`);
+                                setSelectedMovieId(`${movie._id}`);
+                                setOpenMovie(true);
+                            }}>
+                                <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
+                            </button>
+                        </div>
+                        <button className="favoriteButton" onClick={() => {
                             setFavorite({ variables: { movieId: movie._id, favorite: !movie.favorite } });
                         }}>
                             {movie.favorite ? "Remove from favorites" : "Add to favorites"}
@@ -65,6 +71,17 @@ export const Results = (props: { searchText: String }) => {
                     </div>
                 )
             })}
+            {selectedMovieId && (
+        <div>
+          <Modal
+            open={openMovie}
+            onClose={handleCloseMovie}
+          >
+            <MovieInfo selectedMovieID={selectedMovieId} />
+          </Modal>
+        </div>
+      )}
+
         </div>
     )
 }

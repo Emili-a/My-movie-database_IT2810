@@ -9,9 +9,6 @@ export const FILTER_QUERY = gql`
         ) {
             _id
             title
-            plot
-            runtime
-            genres
             poster
             favorite
         }
@@ -40,16 +37,17 @@ export const FAVORITE_MOVIES = gql`
 export const GET_MOVIE = gql`
   query GetMovie ($movieId: String!) { 
     movie (
-      id: $movieId
+      _id: $movieId
     ) {
       _id
       title
       plot
-      fullplot
       runtime
       genres
       poster
       favorite
+      cast
+      year
     }
   }
 `;
