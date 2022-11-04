@@ -53,11 +53,30 @@ main {
 
 }
 
+.posterButton{
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
 .movieCover {
-  width: 95%;
+  width: 97%;
   border-radius: 4px;
 
 }
+
+.favoriteButton {
+  margin: 0.2rem;
+  margin-bottom: 1rem;
+  background-color: #81c6bf;
+  color: #595a5a;
+  width: 90%;
+  font-weight: 700;
+  border: 1.5px solid;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
 
 @media only screen and (min-width: 600px) {
   .Results {

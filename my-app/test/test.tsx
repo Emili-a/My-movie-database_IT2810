@@ -17,6 +17,6 @@ test("Site rendering", () => {
 
 test('Search bar loading', () => {
   render(<MoviesPage />);
-  expect(MoviesPage.contains(<SearchBar />)).toBe(true)
+  expect(MoviesPage.find(SearchBar)).toBeInTheDocument();
 });
 
