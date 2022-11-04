@@ -25,20 +25,20 @@ const limitEntities: number = 24;
 //     return response.data
 // } 
 
-export const Results = (props: { searchText: String, favorite: Boolean }) => {
+export const Results = (props: { searchText: String }) => {
+    const [movies, setMovies] = useState<IMovie[]>([]); // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
     const [fav, setfav] = useState<Boolean>(false);
     const [selectedMovieId, setSelectedMovieId] = useState("");
     const [openMovie, setOpenMovie] = useState<boolean>(false);
     const handleCloseMovie = () => setOpenMovie(false);
     const [skip, setSkip] = useState<number>(0);
-    const [endPageButton, setEndPageButton] = useState<string>("pageButtonNotEnd");
+    const [endPagination, setEndPagination] = useState<string>("pageButtonNotEnd");
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
             searchText: props.searchText,
             skip: skip,
             limit: limitEntities,
-            favorite: props.favorite
         },
         notifyOnNetworkStatusChange: true, //what does this do
     });
@@ -51,9 +51,9 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
     const handleSkip = (IsNext: number) => { //isNext or prev button 1or -1
         if (skip + (limitEntities * IsNext) >= 0) {
             setSkip(skip + (limitEntities * IsNext))
-            setEndPageButton("pageButtonNotEnd")
+            setEndPagination("pageButtonNotEnd")
         } else {
-            setEndPageButton("pageButtonEnd")
+            setEndPagination("pageButtonEnd")
         };
     }
 
@@ -93,7 +93,7 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
                 )}
             </div>
             <div className="pageButtons">
-                <button className={endPageButton} onClick={() => {
+                <button className={endPagination} onClick={() => {
                     handleSkip(-1);
                 }}>
                     Prev
@@ -107,3 +107,4 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
         </div>
     )
 }
+//id, title, duration, plot, genre, image_url, review, agvRating
