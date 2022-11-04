@@ -1,5 +1,5 @@
 .wrapper {
- padding-top: 1rem;
+  padding-top: 1rem;
 }
 
 header {
@@ -17,6 +17,7 @@ h1 {
 menu {
   padding: 0;
 }
+
 .MenuButton {
   font-size: larger;
   width: 46.5%;
@@ -33,6 +34,7 @@ menu {
 .MenuButton:hover {
   color: #c7dddb;
 }
+
 .MenuButton:active {
   transform: scale(0.9);
 }
@@ -53,12 +55,36 @@ main {
 
 }
 
-.posterButton{
+.pageButtons {
+  display: flex;
+  justify-content: center;
+
+}
+
+.pageButtons button {
+  font-size: large;
+  margin: 1rem;
+  height: 2.5rem;
+  background-color: inherit;
+  color: #81c6bf;
+  font-weight: 700;
+  border: 1.5px solid;
+  border-left: none;
+  border-right: none;
+
+}
+
+.pageButtonEnd {
+  display: none;
+}
+
+.posterButton {
   border: none;
   background-color: transparent;
   margin: 0;
   padding: 0;
 }
+
 .movieCover {
   width: 97%;
   border-radius: 4px;
@@ -99,6 +125,7 @@ main {
     padding: 0rem;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
+
   main {
     display: grid;
     grid-template-columns: 17% 1fr 10%;
