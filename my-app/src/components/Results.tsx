@@ -24,7 +24,7 @@ const limitEntities = 25;
 //     return response.data
 // } 
 
-export const Results = (props: { searchText: String }) => {
+export const Results = (props: { searchText: String, favorite: Boolean }) => {
     const [movies, setMovies] = useState<IMovie[]>([]); // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
     const [selectedMovie, setSelectedMovie] = useState<IMovie | null>(null);
     const [selectedBeverageId, setSelectedBeverageId] = useState("");
@@ -33,12 +33,12 @@ export const Results = (props: { searchText: String }) => {
     const [openMovie, setOpenMovie] = useState<boolean>(false);
     const handleCloseMovie = () => setOpenMovie(false);
 
-
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
             searchText: props.searchText,
             skip: 1,
             limit: limitEntities,
+            favorite: props.favorite
         },
         notifyOnNetworkStatusChange: true, //what does this do
     });
