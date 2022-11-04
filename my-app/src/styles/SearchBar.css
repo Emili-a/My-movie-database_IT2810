@@ -1,0 +1,31 @@
+input {
+    font-size: larger;
+    border-radius: 0.5rem;
+    width: 80%;
+    height: 1.5em;
+    text-align: center;
+}
+
+input:focus {
+    box-shadow: 0 0 10px 1000px rgba(0,0,0,0.5);
+    outline: none;
+}
+
+.searchButton {
+    display: none;
+}
+
+@media only screen and (min-width: 600px) {
+    input {
+        width: 50%;
+        height: 1.5em;
+    }
+}
+  
+  @media only screen and (min-width: 992px) {
+    input {
+        width: 40%;
+        height: 1.5em;
+    }
+  
+}
