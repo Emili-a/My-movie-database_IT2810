@@ -36,5 +36,6 @@ curl https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.a
 # Install and run
 npm install
 mongod --config conf/default.conf
-mongorestore --archive=sampledata.archive
+mongorestore --archive=sampledata.archive --db=sample_mflix --collection=movies
+node server.js
 node server.js
