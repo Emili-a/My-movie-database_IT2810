@@ -22,7 +22,7 @@ const SearchBar = ({ movies, setSearchResults }: ISearch) => {
     // write this as query the input should be the variable that the query uses
     const resultArray = movies.filter(movie => movie.title.includes(e.target.value)
       || movie.plot?.includes(e.target.value)
-      || movie.genre?.includes(e.target.value))
+      || movie.genres?.includes(e.target.value))
     // hva med fliter på spesifike parametere som director eller år?
     setSearchResults(resultArray)
   }
