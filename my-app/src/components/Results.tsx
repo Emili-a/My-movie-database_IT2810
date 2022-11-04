@@ -24,6 +24,11 @@ const limitEntities = 25;
 export const Results = (props: { searchText: String }) => {
     const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen
 
+    const [selectedMovie, setSelectedMovie] =
+    useState<IMovie | null>(null);
+    const [openMovie, setOpenMovie] = useState<boolean>(false);
+    const handleCloseMovie = () => setOpenMovie(false);
+  
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
@@ -42,11 +47,13 @@ export const Results = (props: { searchText: String }) => {
         <div>
             {data?.movies.map((movie) => {
                 return (
-                    <div key={movie.id}>
-                        <h3>{movie.title}</h3>
-                        <img width="400" height="250" alt="location-reference" src={`${movie.image_url}`} />
-                        <br />
-                    </div>
+                    <button >
+                        <div key={movie.id}>
+                            <h3>{movie.title}</h3>
+                            <img width="400" height="250" alt="location-reference" src={`${movie.image_url}`} />
+                            <br />
+                        </div>
+                    </button>
                 )
             })}
         </div>

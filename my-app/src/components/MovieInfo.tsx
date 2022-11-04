@@ -24,7 +24,7 @@ export const MovieInfo = (props: { selectedMovieID: string }) => {
     if (error) return <p>Error :(</p>;
   
     return (
-      <div key={data?.movie.id}>
+      <div key={data?.movie.id} className="MovieInfo">
         <h3>{data?.movie.title}</h3>
         <img width="400" height="250" alt="location-reference" src={`${data?.movie.image_url}`} />
         <br />

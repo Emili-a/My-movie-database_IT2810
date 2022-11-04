@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 //import {store} from "./state/store";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql", //hvorfor 4000? uri specifies the URL of our GraphQL server.
+  uri: "http://localhost:4000/graphql", // uri specifies the URL of our GraphQL server.
   cache: new InMemoryCache(), //Apollo Client uses cache to cache query results after fetching them.
 });
 

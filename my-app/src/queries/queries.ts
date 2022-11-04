@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export const FILTER_QUERY = gql`
   query filterMovies ($searchText: String!) {
     movies(
-        $limitEntities: Int
+        $limit: Int
         filter: {
             OR: [{
                 title_contains: $searchText
