@@ -26,7 +26,6 @@ const limitEntities = 25;
 
 export const Results = (props: { searchText: String }) => {
     const [movies, setMovies] = useState<IMovie[]>([]); // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
-    const [fav, setfav] = useState<Boolean>(false);
     const [selectedMovie, setSelectedMovie] = useState<IMovie | null>(null);
     const [selectedBeverageId, setSelectedBeverageId] = useState("");
 
