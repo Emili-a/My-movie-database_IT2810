@@ -11,7 +11,7 @@ export interface IData {
     movie: IMovie;
   }
   
-export const MovieInfo = (props: { selectedMovieID: string }) => {
+const MovieInfo = (props: { selectedMovieID: string }) => {
     const { loading, error, data } = useQuery<IData>(GET_MOVIE, {
         variables: {
           movieId: props.selectedMovieID,
@@ -36,4 +36,6 @@ export const MovieInfo = (props: { selectedMovieID: string }) => {
       </div>
     )
 }
+
+export default MovieInfo
 //id, title, duration, plot, genre, image_url, review, agvRating

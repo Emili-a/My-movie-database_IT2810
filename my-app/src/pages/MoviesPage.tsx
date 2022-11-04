@@ -38,7 +38,7 @@ const MoviesPage = () => {
                         }}
                     >My favorites</button>
                 </menu>
-                <div className='Results'>
+                <div>
                     <Results searchText={searchResults} />
                 </div>
             </main>
