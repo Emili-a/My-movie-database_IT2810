@@ -30,6 +30,7 @@ export const GET_MOVIE = gql`
       runtime
       genres
       poster
+      favorite
     }
   }
 `;

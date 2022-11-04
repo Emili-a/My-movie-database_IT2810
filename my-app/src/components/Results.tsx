@@ -38,16 +38,19 @@ export const Results = (props: { searchText: String }) => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-
     return (
         <div>
             {data?.movies.map((movie) => {
+
                 return (
                     <div key={movie._id}>
                         <h3>{movie.title}</h3>
                         <img width="400" height="250" alt="location-reference" src={`${movie.poster}`} />
                         <br />
-                        <button onClick={() => setFavorite({ variables: {movieId: movie._id, favorite: !movie.favorite} })}>
+                        <button onClick={() => {
+                            console.log(movie.title);
+                            var favorite = movie.favorite;
+                            setFavorite({ variables: {movieId: movie._id, favorite: !movie.favorite} })}}>
                             {movie.favorite ? "Remove from favorites" : "Add to favorites"}
                         </button>
                     </div>
