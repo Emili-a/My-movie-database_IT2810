@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import { FILTER_QUERY } from "../queries/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { FILTER_QUERY, SET_FAVORITE } from "../queries/queries";
 import { IMovie } from "../model/IMovie";
 
 /**
- * @description Component that 
+ * @description Component that
  */
 
 
@@ -22,7 +22,8 @@ const limitEntities = 25;
 // } 
 
 export const Results = (props: { searchText: String }) => {
-    const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen
+    const [movies, setMovies] = useState<IMovie[]>([]) // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
+    const [fav, setfav] = useState<Boolean>(false);  
 
     const [selectedMovie, setSelectedMovie] =
     useState<IMovie | null>(null);
@@ -32,28 +33,34 @@ export const Results = (props: { searchText: String }) => {
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
-            //searchbar results
             searchText: props.searchText,
-            limitEntities: limitEntities,
+            skip: 1,
+            limit: limitEntities,
         },
         notifyOnNetworkStatusChange: true, //what does this do
     });
 
+    const [setFavorite, { data:data2, loading:loading2, error:error2 }] = useMutation(SET_FAVORITE);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
 
+    
     return (
         <div>
             {data?.movies.map((movie) => {
+
                 return (
-                    <button >
-                        <div key={movie.id}>
-                            <h3>{movie.title}</h3>
-                            <img width="400" height="250" alt="location-reference" src={`${movie.image_url}`} />
-                            <br />
-                        </div>
-                    </button>
+                    <div key={movie._id}>
+                        <h3>{movie.title}</h3>
+                        <img width="400" height="250" alt="location-reference" src={`${movie.poster}`} />
+                        <br />
+                        <button onClick={() => {
+                            setFavorite({ variables: {movieId: movie._id, favorite: !movie.favorite} });
+                            }}>
+                            {movie.favorite ? "Remove from favorites" : "Add to favorites"}
+                        </button>
+                    </div>
                 )
             })}
         </div>

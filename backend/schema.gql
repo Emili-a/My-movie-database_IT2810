@@ -25,9 +25,14 @@ type Movie {
   cast: [String]
   poster: String
   released: String
+  favorite: Boolean
 }
 
 type Query {
-  movies(take: Int, skip: Int, orderBy: Sort, genre: String): [Movie]
-  search(search: String): [Movie]
+  movies(limit: Int, skip: Int, orderBy: Sort, genre: String, search: String): [Movie]
+  movie(_id: String): Movie
+}
+
+type Mutation {
+  setFavorite(_id: String, favorite: Boolean): Movie
 }

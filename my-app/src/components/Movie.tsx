@@ -25,7 +25,7 @@ const Movie = ({movie}:IThumbnail) => {
         <article className="MovieInfo">
             <h2>{movie.title}</h2>
             <p>{movie.plot}</p>
-            <p> Movie ID: {movie.id}</p>
+            <p> Movie ID: {movie._id}</p>
         </article>
     )
 }
