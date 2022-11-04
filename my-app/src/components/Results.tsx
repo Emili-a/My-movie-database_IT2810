@@ -25,20 +25,20 @@ const limitEntities: number = 24;
 //     return response.data
 // } 
 
-export const Results = (props: { searchText: String }) => {
-    const [movies, setMovies] = useState<IMovie[]>([]); // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
+export const Results = (props: { searchText: String, favorite: Boolean }) => {
     const [fav, setfav] = useState<Boolean>(false);
     const [selectedMovieId, setSelectedMovieId] = useState("");
     const [openMovie, setOpenMovie] = useState<boolean>(false);
     const handleCloseMovie = () => setOpenMovie(false);
     const [skip, setSkip] = useState<number>(0);
-    const [endPagination, setEndPagination] = useState<string>("pageButtonNotEnd");
+    const [endPageButton, setEndPageButton] = useState<string>("pageButtonNotEnd");
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
             searchText: props.searchText,
             skip: skip,
             limit: limitEntities,
+            favorite: props.favorite
         },
         notifyOnNetworkStatusChange: true, //what does this do
     });
@@ -51,9 +51,9 @@ export const Results = (props: { searchText: String }) => {
     const handleSkip = (IsNext: number) => { //isNext or prev button 1or -1
         if (skip + (limitEntities * IsNext) >= 0) {
             setSkip(skip + (limitEntities * IsNext))
-            setEndPagination("pageButtonNotEnd")
+            setEndPageButton("pageButtonNotEnd")
         } else {
-            setEndPagination("pageButtonEnd")
+            setEndPageButton("pageButtonEnd")
         };
     }
 
@@ -93,7 +93,7 @@ export const Results = (props: { searchText: String }) => {
                 )}
             </div>
             <div className="pageButtons">
-                <button className={endPagination} onClick={() => {
+                <button className={endPageButton} onClick={() => {
                     handleSkip(-1);
                 }}>
                     Prev
@@ -107,4 +107,3 @@ export const Results = (props: { searchText: String }) => {
         </div>
     )
 }
-//id, title, duration, plot, genre, image_url, review, agvRating
