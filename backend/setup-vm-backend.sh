@@ -16,6 +16,12 @@ dpkg -i libssl1.deb
 curl https://repo.mongodb.org/apt/ubuntu/dists/focal/mongodb-org/6.0/multiverse/binary-amd64/mongodb-org-server_6.0.2_amd64.deb -o mongodb.deb
 dpkg -i mongodb.deb
 
+# MongoDB Database Tools (separate from mongodb core)
+curl https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.6.1.deb -o mongodb-tools.deb
+dpkg -i mongodb-tools.deb
+
+cd ..
+
 # Update configuration
 rm -rf /etc/mongod.conf
 cp ../conf/default.conf /etc/mongod.conf
@@ -23,4 +29,9 @@ cp ../conf/default.conf /etc/mongod.conf
 # (Re)start daemon
 service mongod stop
 service mongod start
-service mongod status
+
+# Load data from remote server
+curl https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.archive
+mongorestore --archive=sampledata.archive
+
+npm install && node server.js
