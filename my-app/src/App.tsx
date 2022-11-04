@@ -1,11 +1,11 @@
 import React from 'react';
 import MoviesPage from "./pages/MoviesPage";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <MoviesPage /> 
-    </div> 
+    <div className='PageWrapper'>
+      <MoviesPage />
+    </div>
   );
 }
 

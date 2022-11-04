@@ -22,7 +22,7 @@ export interface IThumbnail {
 
 const Movie = ({movie}:IThumbnail) => { 
     return (
-        <article>
+        <article className="MovieInfo">
             <h2>{movie.title}</h2>
             <p>{movie.plot}</p>
             <p> Movie ID: {movie._id}</p>
