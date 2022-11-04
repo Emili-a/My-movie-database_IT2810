@@ -32,6 +32,9 @@ service mongod start
 
 # Load data from remote server
 curl https://atlas-education.s3.amazonaws.com/sampledata.archive -o sampledata.archive
-mongorestore --archive=sampledata.archive
 
-npm install && node server.js
+# Install and run
+npm install
+mongod --config conf/default.conf
+mongorestore --archive=sampledata.archive
+node server.js
