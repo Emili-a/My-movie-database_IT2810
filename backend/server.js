@@ -26,33 +26,13 @@ var root = {
     } else {
         query = {}
     }
+
     query = { ...query, "poster": { $ne: null } }
-
     console.log(query)
-    var sorter = { title: args.orderBy == "desc" ? -1 : 1 };
-
-    var ret = dbConnect
-      .collection("movies")
-      .find(query)
-      .sort(sorter)
-      .skip(args.skip)
-      .limit(args.limit)
-      .toArray();
-    return ret;
-  },
-  fav_movies: (args) => {
-    console.log(args)
-
-    const dbConnect = dbo.getDb();
-    if ("search" in args) {
-      query = { $text: { $search: args.search } };
-    } else if ("genre" in args) {
-        query = { "genres": args.genre }
-    } else {
-        query = {}
+    if ("favorite" in args && args.favorite) {
+      query = { ...query, "favorite": true }
     }
 
-    query = { ...query, "favorite": true }
     console.log(query)
     var sorter = { title: args.orderBy == "desc" ? -1 : 1 };
 

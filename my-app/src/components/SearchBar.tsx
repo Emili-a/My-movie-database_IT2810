@@ -12,12 +12,7 @@ export interface ISearch {
 const SearchBar = ({ setSearchResults }: ISearch) => {
 
   const handleSearchChange = (e: any) => {
-    if (e.target.value == "") {
-      setSearchResults("B") 
-    }
-    else {
       setSearchResults(e.target.value)
-    }
   }
 
   const handleSubmit = (e: any) => {
