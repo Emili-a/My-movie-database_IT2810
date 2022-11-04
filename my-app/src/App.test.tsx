@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
@@ -8,9 +9,10 @@ import { useState } from 'react';
 import { Results } from "./components/Results";
 import SearchBar from "./components/SearchBar";
 
-test('Search bar loading as intended', () => {
-  render(<MoviesPage />);
-  expect(MoviesPage.find(SearchBar)).toBeInTheDocument();
+test("Site rendering", () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
 });
 
 
