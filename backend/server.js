@@ -19,13 +19,15 @@ var root = {
     console.log(args)
 
     const dbConnect = dbo.getDb();
-    if ("search" in args) {
+    if ("search" in args && args.search !== "") {
       query = { $text: { $search: args.search } };
     } else if ("genre" in args) {
         query = { "genres": args.genre }
     } else {
         query = {}
     }
+    query = { ...query, "poster": { $ne: null } }
+
     console.log(query)
     var sorter = { title: args.orderBy == "desc" ? -1 : 1 };
 

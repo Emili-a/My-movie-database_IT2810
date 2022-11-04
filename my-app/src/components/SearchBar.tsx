@@ -12,8 +12,12 @@ export interface ISearch {
 const SearchBar = ({ setSearchResults }: ISearch) => {
 
   const handleSearchChange = (e: any) => {
-    if (!e.target.value) return setSearchResults("")  //if input is empty all movies should be displayed
-    setSearchResults(e.target.value)
+    if (e.target.value == "") {
+      setSearchResults("B") 
+    }
+    else {
+      setSearchResults(e.target.value)
+    }
   }
 
   const handleSubmit = (e: any) => {

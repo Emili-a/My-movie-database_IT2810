@@ -7,7 +7,7 @@ import SearchBar from "../components/SearchBar";
 //<Results searchText={searchResults}/>
 
 const MoviesPage = () => {
-    const [searchResults, setSearchResults] = useState<String>("")
+    const [searchResults, setSearchResults] = useState<String>("B");
     const [favorits, setFavorits] = useState<boolean>(false);
 
     /*useEffect
