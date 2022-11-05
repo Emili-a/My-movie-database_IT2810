@@ -66,7 +66,6 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
                 {data?.movies.map((movie) => {
                     return (
                         <div key={movie._id}>
-                            <h3>{movie.title}</h3>
                             <div>
                                 <button className="posterButton" type="button" onClick={() => {
                                     console.log(`${movie._id}`);
