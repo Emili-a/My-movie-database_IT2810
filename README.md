@@ -65,3 +65,6 @@ Search for favorite movies and favorite them
 
 ![movie](./my-app/public/readme_pic/search.PNG)
 
+Click on next to view another page with more movie results, and prev to view the previous one.
+
+![movie](./my-app/public/readme_pic/pages.PNG)
