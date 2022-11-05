@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import Modal from '@mui/material/Modal';
 import MovieInfo from "./MovieInfo";
@@ -6,7 +6,8 @@ import { FILTER_QUERY, SET_FAVORITE } from "../queries/queries";
 import { IMovie } from "../model/IMovie";
 
 /**
- * @description Component that
+ * @description Component that fetches result data with a qraphQL query based on the search text.
+ * This component also handles pagination and "favorite" functionality.
  */
 
 
@@ -16,22 +17,14 @@ export interface IData {
 
 const limitEntities: number = 24;
 
-
-
-// lage en async funksjon for execute search? eller ikke
-// vv(nedenfor) hvordan vi hadde gjort det tidligere i api-filen(som nå er slettet)  
-// export const getMovies = async () => {
-//     const response = await api.get('/movies')
-//     return response.data
-// } 
-
 export const Results = (props: { searchText: String, favorite: Boolean }) => {
-    const [fav, setfav] = useState<Boolean>(false);
     const [selectedMovieId, setSelectedMovieId] = useState("");
     const [openMovie, setOpenMovie] = useState<boolean>(false);
     const handleCloseMovie = () => setOpenMovie(false);
     const [skip, setSkip] = useState<number>(0);
-    const [endPageButton, setEndPageButton] = useState<string>("pageButtonNotEnd");
+    const [NextButton, setNextButton] = useState<string>("NextButtonNotEnd");
+    const [PrevButton, setPrevButton] = useState<string>("PrevButtonNotEnd");
+
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
@@ -40,7 +33,7 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
             limit: limitEntities,
             favorite: props.favorite
         },
-        notifyOnNetworkStatusChange: true, //what does this do
+        notifyOnNetworkStatusChange: true,
     });
 
     const [setFavorite, { data: data2, loading: loading2, error: error2 }] = useMutation(SET_FAVORITE);
@@ -48,13 +41,23 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
 
-    const handleSkip = (IsNext: number) => { //isNext or prev button 1or -1
-        if (skip + (limitEntities * IsNext) >= 0) {
-            setSkip(skip + (limitEntities * IsNext))
-            setEndPageButton("pageButtonNotEnd")
-        } else {
-            setEndPageButton("pageButtonEnd")
-        };
+    const handleSkip = (IsNext: number) => { //isNext or Prev button, set to 1 or -1
+        setNextButton("NextButtonNotEnd");
+        setPrevButton("PrevButtonNotEnd");
+        if (data?.movies.length !== undefined) {
+            if (skip + (limitEntities * IsNext) >= 0) {
+                if ((!(data?.movies.length < limitEntities))) {
+                    setSkip(skip + (limitEntities * IsNext))
+                    setNextButton("NextButtonNotEnd")
+                } else {
+                    setNextButton("NextButtonEnd")
+                };
+                setSkip(skip + (limitEntities * IsNext))
+                setPrevButton("PrevButtonNotEnd")
+            } else {
+                setPrevButton("PrevButtonEnd")
+            };
+        }
     }
 
     return (
@@ -93,12 +96,12 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
                 )}
             </div>
             <div className="pageButtons">
-                <button className={endPageButton} onClick={() => {
+                <button className={PrevButton} onClick={() => {
                     handleSkip(-1);
                 }}>
                     Prev
                 </button>
-                <button onClick={() => {
+                <button className={NextButton} onClick={() => {
                     handleSkip(1);
                 }}>
                     Next

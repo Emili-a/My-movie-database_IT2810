@@ -2,7 +2,8 @@ import React from 'react'
 import '../styles/SearchBar.css';
 
 /**
- * @description Component that handles input of searchText and passes the searchText to MoviesPage
+ * @description Component that handles input of searchText and passes the searchText to MoviesPage.
+ * The initial seachText is set to "S" to show some movies on load.
  */
 
 export interface ISearch {
@@ -11,13 +12,17 @@ export interface ISearch {
 
 const SearchBar = ({ setSearchResults }: ISearch) => {
 
-  const handleSearchChange = (e: any) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+      setSearchResults("S")
+    }
+    else {
       setSearchResults(e.target.value)
+    }
   }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault() //no relaod on submitt?
-    //console.log("Hi")
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault() //no relaod on submitt
   }
   return (
     <header>

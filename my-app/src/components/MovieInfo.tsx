@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIE } from "../queries/queries";
 import { IMovie } from "../model/IMovie";
 import '../styles/MovieInfo.css';
 
 /**
- * @description Component that fetches a single movie by movie id and show info popup for that movie
+ * @description Component that fetches a single movie by movie id and show info popup for that movie.
  */
 
 export interface IData {
@@ -56,5 +56,3 @@ const MovieInfo = (props: { selectedMovieID: string }) => {
 }
 
 export default MovieInfo
-//id, title, duration, plot, genre, image_url, review, agvRating
-//_id
