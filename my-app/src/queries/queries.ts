@@ -1,17 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const FILTER_QUERY = gql`
-<<<<<<< HEAD
   query FilterMovies ($searchText: String!, $skip: Int!, $limit: Int!, $favorite: Boolean!) {
-=======
-  query FilterMovies ($searchText: String!, $skip: Int!, $limit: Int!) {
     movies(
         limit: $limit,
         skip: $skip,
         search: $searchText
+        favorite: $favorite
         ) {
             _id
             title
+            plot
+            runtime
+            genres
             poster
             favorite
         }
@@ -20,7 +21,6 @@ export const FILTER_QUERY = gql`
 
 export const FAVORITE_MOVIES = gql`
   query FilterMovies ($searchText: String!, $skip: Int!, $limit: Int!) {
->>>>>>> origin/main
     movies(
         limit: $limit,
         skip: $skip,
