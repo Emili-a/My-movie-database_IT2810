@@ -15,10 +15,6 @@ export const FILTER_QUERY = gql`
         favorite: $favorite
         ) {
             _id
-            title
-            plot
-            runtime
-            genres
             poster
             favorite
         }

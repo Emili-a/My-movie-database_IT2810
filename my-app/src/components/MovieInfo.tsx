@@ -26,7 +26,7 @@ const MovieInfo = (props: { selectedMovieID: string }) => {
 
   return (
     <div key={data?.movie._id} className="movieInfo">
-      <h3>{data?.movie.title}</h3>
+      <h3 className="movieTitle" >{data?.movie.title}</h3>
       <img width="35%" height="60%" alt="location-reference" src={`${data?.movie.poster}`} />
       <br />
       <b>About this movie:</b>

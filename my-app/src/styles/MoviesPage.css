@@ -39,10 +39,6 @@ menu {
   transform: scale(0.9);
 }
 
-h3 {
-  display: none;
-}
-
 main {
   display: grid;
   grid-template-columns: 1fr;
@@ -83,11 +79,11 @@ main {
 }
 
 .PrevButtonNotEnd {
-  display:block;
+  display: block;
 }
 
 .NextButtonNotEnd {
-  display:block;
+  display: block;
 }
 
 .posterButton {
