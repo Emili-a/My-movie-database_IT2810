@@ -14,7 +14,9 @@ export interface IData {
     movies: IMovie[];
 }
 
-const limitEntities = 25;
+const limitEntities: number = 24;
+
+
 
 // lage en async funksjon for execute search? eller ikke
 // vv(nedenfor) hvordan vi hadde gjort det tidligere i api-filen(som nå er slettet)  
@@ -24,18 +26,17 @@ const limitEntities = 25;
 // } 
 
 export const Results = (props: { searchText: String, favorite: Boolean }) => {
-    const [movies, setMovies] = useState<IMovie[]>([]); // kan hende denne ikke trengs siden det hentes inn direkte fra databasen.
     const [fav, setfav] = useState<Boolean>(false);
     const [selectedMovieId, setSelectedMovieId] = useState("");
-
-
     const [openMovie, setOpenMovie] = useState<boolean>(false);
     const handleCloseMovie = () => setOpenMovie(false);
+    const [skip, setSkip] = useState<number>(0);
+    const [endPageButton, setEndPageButton] = useState<string>("pageButtonNotEnd");
 
     const { loading, error, data } = useQuery<IData>(FILTER_QUERY, {
         variables: {
             searchText: props.searchText,
-            skip: 1,
+            skip: skip,
             limit: limitEntities,
             favorite: props.favorite
         },
@@ -47,45 +48,62 @@ export const Results = (props: { searchText: String, favorite: Boolean }) => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
 
+    const handleSkip = (IsNext: number) => { //isNext or prev button 1or -1
+        if (skip + (limitEntities * IsNext) >= 0) {
+            setSkip(skip + (limitEntities * IsNext))
+            setEndPageButton("pageButtonNotEnd")
+        } else {
+            setEndPageButton("pageButtonEnd")
+        };
+    }
 
     return (
-        <div className='Results'>
-            {data?.movies.map((movie) => {
-                return (
-                    <div key={movie._id}>
-                        <h3>{movie.title}</h3>
-                        <div>
-                            <button className="posterButton" type="button" onClick={() => {
-                                console.log(`${movie._id}`);
-                                setSelectedMovieId(`${movie._id}`);
-                                setOpenMovie(true);
+        <div>
+            <div className='Results'>
+                {data?.movies.map((movie) => {
+                    return (
+                        <div key={movie._id}>
+                            <h3>{movie.title}</h3>
+                            <div>
+                                <button className="posterButton" type="button" onClick={() => {
+                                    console.log(`${movie._id}`);
+                                    setSelectedMovieId(`${movie._id}`);
+                                    setOpenMovie(true);
+                                }}>
+                                    <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
+                                </button>
+                            </div>
+                            <button className="favoriteButton" onClick={() => {
+                                setFavorite({ variables: { movieId: movie._id, favorite: !movie.favorite } });
                             }}>
-                                <img width="400" height="250" className="movieCover" alt="location-reference" src={`${movie.poster}`} />
+                                {movie.favorite ? "Remove from favorites" : "Add to favorites"}
                             </button>
                         </div>
-                        <button className="favoriteButton" onClick={() => {
-                            setFavorite({ variables: { movieId: movie._id, favorite: !movie.favorite } });
-                        }}>
-                            {movie.favorite ? "Remove from favorites" : "Add to favorites"}
-                        </button>
+                    )
+                })}
+                {selectedMovieId && (
+                    <div>
+                        <Modal
+                            open={openMovie}
+                            onClose={handleCloseMovie}
+                        >
+                            <MovieInfo selectedMovieID={selectedMovieId} />
+                        </Modal>
                     </div>
-                )
-            })}
-            {selectedMovieId && (
-        <div>
-          <Modal
-            open={openMovie}
-            onClose={handleCloseMovie}
-          >
-            <MovieInfo selectedMovieID={selectedMovieId} />
-          </Modal>
-        </div>
-      )}
-
+                )}
+            </div>
+            <div className="pageButtons">
+                <button className={endPageButton} onClick={() => {
+                    handleSkip(-1);
+                }}>
+                    Prev
+                </button>
+                <button onClick={() => {
+                    handleSkip(1);
+                }}>
+                    Next
+                </button>
+            </div>
         </div>
     )
 }
-//id, title, duration, plot, genre, image_url, review, agvRating
-
-
-
