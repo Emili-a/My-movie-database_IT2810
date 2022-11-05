@@ -1,20 +1,5 @@
 #### FRONTEND
 
-## Install
-First clone the repository. 
-To intall all needed dependencies, from within the my-app folder run:
-```
-$ npm install
-```
-
-## Start
-To start the react application. From within the my-app folder run:
-```
-$ npm start
-```
-
-The app will by default run on port:3000
-
 ## Testing
 
 cd into my-app and run 
