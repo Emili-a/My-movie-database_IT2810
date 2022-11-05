@@ -4,20 +4,16 @@ import { useState } from 'react'
 import { Results } from "../components/Results";
 import SearchBar from "../components/SearchBar";
 
-//<Results searchText={searchResults}/>
+/**
+ * @description Component that displays searchbar, resutls and a menu with options to switch
+ * between laoding just "My favorites" og "All movies". This component passes the search text from
+ * the SearchBar component to the Results component.
+ */
 
-const MoviesPage = () => {
-    const [searchResults, setSearchResults] = useState<String>("");
+
+const MoviesPage: React.FC = () => {
+    const [searchResults, setSearchResults] = useState<String>("S");
     const [favorite, setfavorite] = useState<boolean>(false);
-
-    /*useEffect
-    const results = searchResults.map(movie => <Movie key={movie.id} movie={movie}/>)
-    const content = results?.length ? results : <article><p> </>
-    */
-    function handleSubmit(e: any) {
-        e.preventDefault();
-        console.log('You clicked submit.');
-    }
 
     return (
         <div className="wrapper">
@@ -38,9 +34,9 @@ const MoviesPage = () => {
                         }}
                     >My favorites</button>
                 </menu>
-                <div>
+                <section>
                     <Results searchText={searchResults} favorite={favorite} />
-                </div>
+                </section>
             </main>
         </div>
     )

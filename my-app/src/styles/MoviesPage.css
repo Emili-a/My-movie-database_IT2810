@@ -74,8 +74,20 @@ main {
 
 }
 
-.pageButtonEnd {
+.NextButtonEnd {
   display: none;
+}
+
+.PrevButtonEnd {
+  display: none;
+}
+
+.PrevButtonNotEnd {
+  display:block;
+}
+
+.NextButtonNotEnd {
+  display:block;
 }
 
 .posterButton {
@@ -83,6 +95,10 @@ main {
   background-color: transparent;
   margin: 0;
   padding: 0;
+}
+
+.posterButton:hover {
+  transform: scale(0.9);
 }
 
 .movieCover {

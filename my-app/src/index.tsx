@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import reportWebVitals from './reportWebVitals';
-//import {Provider} from "react-redux";
-//import {store} from "./state/store";
+
+/**
+ * @description Component that renders our App.
+ * This component wraps our App in a ApolloProvider enabling global state management and chaching.
+ */
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql", // uri specifies the URL of our GraphQL server.

@@ -1,5 +1,11 @@
 import { gql } from "@apollo/client";
 
+/**
+ * @description Queries (fetch data from database) and mutations (change data in database) in qraphQL,
+ * FILTER_QUERY fetches and filters data on title, plot and genre based on seach text.
+ * GET_MOVIE fetches all relevant data anbout the movie we would want to get for displaying further movie info.
+ */
+
 export const FILTER_QUERY = gql`
   query FilterMovies ($searchText: String!, $skip: Int!, $limit: Int!, $favorite: Boolean!) {
     movies(
@@ -38,7 +44,8 @@ export const FAVORITE_MOVIES = gql`
   }
 `;
 
-//String!: the exclamation mark means non-nullable, meaning GraphQL service promises to always give you a value when you query this field
+//String!: the exclamation mark means non-nullable, 
+// meaning GraphQL service promises to always give you a value when you query this field
 export const GET_MOVIE = gql`
   query GetMovie ($movieId: String!) { 
     movie (
