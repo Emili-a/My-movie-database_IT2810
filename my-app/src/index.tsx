@@ -9,9 +9,10 @@ import reportWebVitals from './reportWebVitals';
  * @description Component that renders our App.
  * This component wraps our App in a ApolloProvider enabling global state management and chaching.
  */
+var hostname = window.location.hostname;
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql", // uri specifies the URL of our GraphQL server.
+  uri: "http://" + hostname + ":4000/graphql", // uri specifies the URL of our GraphQL server.
   cache: new InMemoryCache(), //Apollo Client uses cache to cache query results after fetching them.
 });
 
