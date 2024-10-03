@@ -1,3 +1,9 @@
+Created by a student group as part of the course IT2810 Webutvikling at NTNU in 2022.
+
+Original GitLab repo: https://gitlab.stud.idi.ntnu.no/it2810-archive/it2810-h22/Team-61/Prosjekt3
+
+---
+
 # Prosjekt3
 
 
